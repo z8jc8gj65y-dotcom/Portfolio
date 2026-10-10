@@ -4,9 +4,12 @@
 
 /* Colori e misure riutilizzabili */
 :root {
-    --sfondo: #fafaf7;
-    --testo: #222222;
-    --accento: #2f6fed;
+    --sfondo: #f5f4f0;
+    /* bianco carta, simile al fondo delle tue tavole */
+    --testo: #141414;
+    /* nero inchiostro */
+    --accento: #1fb5a8;
+    /* rosso */
 }
 
 * {
@@ -73,6 +76,37 @@ nav a:hover {
     color: var(--accento);
 }
 
+/* ==========================
+   RETINO (HEADER E FOOTER)
+   ========================== */
+
+header,
+footer {
+    position: relative;
+    isolation: isolate;
+}
+
+header::before,
+footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.18) 0.8px, transparent 1.2px);
+    background-size: 4px 4px;
+}
+
+/* Header: il retino sfuma verso il basso */
+header::before {
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent);
+    mask-image: linear-gradient(to bottom, black 40%, transparent);
+}
+
+/* Footer: il retino sfuma verso l'alto */
+footer::before {
+    -webkit-mask-image: linear-gradient(to top, black 40%, transparent);
+    mask-image: linear-gradient(to top, black 40%, transparent);
+}
 
 /* ==========================
    GALLERIA ILLUSTRAZIONI
