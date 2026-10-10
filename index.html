@@ -15,6 +15,7 @@
         <p>Illustratore e Grafico</p>
         <nav>
             <a href="#chi-sono">Chi sono</a>
+            <a href="#illustrazioni">Illustrazioni</a>
             <a href="#progetti">Progetti</a>
             <a href="#contatti">Contatti</a>
         </nav>
@@ -26,6 +27,17 @@
             <p>Dal disegno manga alla grafica, fino allo sviluppo di piccole app: questo è il mio spazio creativo, dove
                 illustrazione e tecnologia si incontrano per dare vita a nuove idee.
             </p>
+        </section>
+
+        <section id="illustrazioni">
+            <h2>Illustrazioni</h2>
+
+            <div class="gallery">
+                <img src="images/Illustrazione1.JPEG" alt="Spark my OC" loading="lazy">
+                <img src="images/Illustrazione2.PNG" alt="Sirena" loading="lazy">
+                <img src="images/Illustrazione3.JPEG" alt="Contest" loading="lazy">
+                <img src="images/Illustrazione4.JPEG" alt="Zeph my OC" loading="lazy">
+            </div>
         </section>
 
         <section id="progetti">
@@ -46,13 +58,22 @@
 
         <section id="contatti">
             <h2>Contatti</h2>
-            <p>Scrivimi a <a href="mailto:mario@esempio.it">mario@esempio.it</a></p>
+            <p>Scrivimi a <a href="mailto:mikg@prova.it">mikg@prova.it</a></p>
         </section>
     </main>
 
     <footer>
         <p>© 2026 Michael Mikg</p>
     </footer>
+
+
+    <div class="lightbox" id="lightbox">
+        <button class="freccia sinistra" id="prev" aria-label="Immagine precedente">&#10094;</button>
+        <img id="lightbox-img" src="" alt="">
+        <button class="freccia destra" id="next" aria-label="Immagine successiva">&#10095;</button>
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
 

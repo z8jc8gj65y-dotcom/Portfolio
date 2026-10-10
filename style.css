@@ -1,3 +1,7 @@
+/* ==========================
+   BASE
+   ========================== */
+
 /* Colori e misure riutilizzabili */
 :root {
     --sfondo: #fafaf7;
@@ -5,7 +9,6 @@
     --accento: #2f6fed;
 }
 
-/* Regole di base per tutta la pagina */
 * {
     box-sizing: border-box;
 }
@@ -18,7 +21,26 @@ body {
     background: var(--sfondo);
 }
 
-/* Header centrato */
+main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+section {
+    margin-bottom: 3rem;
+}
+
+h2 {
+    border-bottom: 2px solid var(--accento);
+    padding-bottom: 0.3rem;
+}
+
+
+/* ==========================
+   HEADER E MENU
+   ========================== */
+
 header {
     text-align: center;
     padding: 3rem 1rem 2rem;
@@ -44,23 +66,90 @@ nav a:hover {
     color: var(--accento);
 }
 
-/* Contenuto centrato e non troppo largo */
-main {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 0 1rem;
+
+/* ==========================
+   GALLERIA ILLUSTRAZIONI
+   ========================== */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
 }
 
-section {
-    margin-bottom: 3rem;
+.gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
 }
 
-h2 {
-    border-bottom: 2px solid var(--accento);
-    padding-bottom: 0.3rem;
+
+/* ==========================
+   LIGHTBOX
+   ========================== */
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 100;
 }
 
-/* Le card dei progetti */
+.lightbox.aperta {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+}
+
+.freccia {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.freccia:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.freccia.sinistra {
+    left: 1rem;
+}
+
+.freccia.destra {
+    right: 1rem;
+}
+
+
+/* ==========================
+   PROGETTI
+   ========================== */
+
+/* Colonne automatiche con CSS Grid */
+.griglia {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
 article {
     background: white;
     padding: 1rem 1.5rem;
@@ -69,24 +158,26 @@ article {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+.griglia article {
+    margin-bottom: 0;
+}
+
+
+/* ==========================
+   FOOTER
+   ========================== */
+
 footer {
     text-align: center;
     padding: 2rem 1rem;
     color: #777;
 }
 
-/* Progetti: colonne automatiche con CSS Grid */
-.griglia {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-}
 
-.griglia article {
-    margin-bottom: 0;
-}
+/* ==========================
+   SCHERMI PICCOLI (TELEFONI)
+   ========================== */
 
-/* Schermi piccoli (telefoni) */
 @media (max-width: 600px) {
     header h1 {
         font-size: 2rem;
@@ -95,5 +186,9 @@ footer {
     nav a {
         display: inline-block;
         margin: 0.25rem 0.5rem;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
