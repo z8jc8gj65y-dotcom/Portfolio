@@ -1,0 +1,99 @@
+/* Colori e misure riutilizzabili */
+:root {
+    --sfondo: #fafaf7;
+    --testo: #222222;
+    --accento: #2f6fed;
+}
+
+/* Regole di base per tutta la pagina */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    line-height: 1.6;
+    color: var(--testo);
+    background: var(--sfondo);
+}
+
+/* Header centrato */
+header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+nav {
+    margin-top: 1.5rem;
+}
+
+nav a {
+    margin: 0 0.75rem;
+    color: var(--testo);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: var(--accento);
+}
+
+/* Contenuto centrato e non troppo largo */
+main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+section {
+    margin-bottom: 3rem;
+}
+
+h2 {
+    border-bottom: 2px solid var(--accento);
+    padding-bottom: 0.3rem;
+}
+
+/* Le card dei progetti */
+article {
+    background: white;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #777;
+}
+
+/* Progetti: colonne automatiche con CSS Grid */
+.griglia {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.griglia article {
+    margin-bottom: 0;
+}
+
+/* Schermi piccoli (telefoni) */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 0.25rem 0.5rem;
+    }
+}
