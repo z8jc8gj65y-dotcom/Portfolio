@@ -50,3 +50,22 @@ document.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowLeft') mostra(indiceCorrente - 1);
     if (e.key === 'ArrowRight') mostra(indiceCorrente + 1);
 });
+
+// Swipe (dito o mouse)
+let inizioX = 0;
+
+lightbox.addEventListener('pointerdown', function (e) {
+    inizioX = e.clientX;
+});
+
+lightbox.addEventListener('pointerup', function (e) {
+    const differenza = e.clientX - inizioX;
+
+    if (Math.abs(differenza) < 50) return;
+
+    if (differenza < 0) {
+        mostra(indiceCorrente + 1);
+    } else {
+        mostra(indiceCorrente - 1);
+    }
+});

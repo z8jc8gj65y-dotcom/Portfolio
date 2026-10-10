@@ -15,7 +15,7 @@
 
 body {
     margin: 0;
-    font-family: system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     line-height: 1.6;
     color: var(--testo);
     background: var(--sfondo);
@@ -29,6 +29,13 @@ main {
 
 section {
     margin-bottom: 3rem;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Reggae One', sans-serif;
+    font-weight: 400;
 }
 
 h2 {
@@ -92,6 +99,7 @@ nav a:hover {
    ========================== */
 
 .lightbox {
+    touch-action: pan-y;
     display: none;
     position: fixed;
     inset: 0;
