@@ -23,33 +23,48 @@
         </nav>
     </header>
 
-    <div class="murales">
-        <!-- Righe 1-2 -->
-        <img class="grande" src="images/gallery/01.png" alt="Descrizione 1" loading="lazy">
-        <img class="vert" src="images/gallery/02.jpeg" alt="Descrizione 2" loading="lazy">
-        <img src="images/gallery/03.JPEG" alt="Descrizione 3" loading="lazy">
-        <img src="images/gallery/04.jpeg" alt="Descrizione 4" loading="lazy">
 
-        <!-- Righe 3-4 -->
-        <img class="vert" src="images/gallery/05.JPEG" alt="Descrizione 5" loading="lazy">
-        <img class="grande" src="images/gallery/06.PNG" alt="Descrizione 6" loading="lazy">
-        <img class="vert" src="images/gallery/07.JPEG" alt="Descrizione 7" loading="lazy">
+    <main class="larga">
+        <div class="murales-box chiuso" id="murales-box">
+            <div class="murales">
+                <!--
+  NUOVE IMMAGINI: incollale QUI, in cima, prima di tutte le altre.
+  Le vecchie scendono da sole di una riga.
+  Una riga = 4 celle: quadrato = 1, vert = 2, oriz = 2, grande = 4.
+  Per non lasciare buchi, le celle aggiunte devono essere un multiplo di 4.
+  Esempi: 4 quadrati / 1 oriz + 2 quadrati / 1 grande.
+-->
+                <!-- Righe 1-2 -->
+                <img class="grande" src="images/gallery/01.png" data-titolo="Sirena" data-testo="Contest per DTIYS"
+                    alt="Descrizione 1" loading="lazy">
+                <img class="vert" src="images/gallery/02.jpeg" alt="Descrizione 2" loading="lazy">
+                <img src="images/gallery/03.JPEG" alt="Descrizione 3" loading="lazy">
+                <img src="images/gallery/04.jpeg" alt="Descrizione 4" loading="lazy">
 
-        <!-- Riga 5 -->
-        <img class="oriz" src="images/gallery/08.png" alt="Descrizione 8" loading="lazy">
-        <img src="images/gallery/09.jpeg" alt="Descrizione 9" loading="lazy">
-        <img src="images/gallery/10.jpeg" alt="Descrizione 10" loading="lazy">
+                <!-- Righe 3-4 -->
+                <img class="vert" src="images/gallery/05.JPEG" alt="Descrizione 5" loading="lazy">
+                <img class="grande" src="images/gallery/06.PNG" alt="Descrizione 6" loading="lazy">
+                <img class="vert" src="images/gallery/07.JPEG" alt="Descrizione 7" loading="lazy">
 
-        <!-- Riga 6 -->
-        <img src="images/gallery/11.jpg" alt="Descrizione 11" loading="lazy">
-        <img src="images/gallery/12.jpg" alt="Descrizione 12" loading="lazy">
-        <img class="oriz" src="images/gallery/13.jpg" alt="Descrizione 13" loading="lazy">
+                <!-- Riga 5 -->
+                <img class="oriz" src="images/gallery/08.png" alt="Descrizione 8" loading="lazy">
+                <img src="images/gallery/09.jpeg" alt="Descrizione 9" loading="lazy">
+                <img src="images/gallery/10.PNG" alt="Descrizione 10" loading="lazy">
 
-        <!-- Riga 7 -->
-        <img class="oriz" src="images/gallery/14.jpg" alt="Descrizione 14" loading="lazy">
-        <img src="images/gallery/15.jpg" alt="Descrizione 15" loading="lazy">
-        <img src="images/gallery/16.jpg" alt="Descrizione 16" loading="lazy">
-    </div>
+                <!-- Riga 6 -->
+                <img src="images/gallery/11.jpeg" alt="Descrizione 11" loading="lazy">
+                <img src="images/gallery/12.png" alt="Descrizione 12" loading="lazy">
+                <img class="oriz" src="images/gallery/15.JPEG" alt="Descrizione 13" loading="lazy">
+
+                <!-- Righe 3-4 -->
+                <img class="vert" src="images/gallery/14.png" alt="Descrizione 5" loading="lazy">
+                <img class="grande" src="images/gallery/13.png" alt="Descrizione 6" loading="lazy">
+                <img class="vert" src="images/gallery/16.JPEG" alt="Descrizione 7" loading="lazy">
+            </div>
+        </div>
+
+        <button class="btn-altre" id="mostra-altre" type="button" aria-expanded="false">Mostra altre ↓</button>
+    </main>
 
     <footer>
         <p>© 2026 Michael Mikg</p>
@@ -57,7 +72,15 @@
 
     <div class="lightbox" id="lightbox">
         <button class="freccia sinistra" id="prev" aria-label="Immagine precedente">&#10094;</button>
-        <img id="lightbox-img" src="" alt="">
+
+        <div class="lightbox-contenuto">
+            <img id="lightbox-img" src="" alt="">
+            <div class="didascalia">
+                <h3 id="lightbox-titolo"></h3>
+                <p id="lightbox-testo"></p>
+            </div>
+        </div>
+
         <button class="freccia destra" id="next" aria-label="Immagine successiva">&#10095;</button>
     </div>
 

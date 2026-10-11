@@ -1,16 +1,25 @@
 const lightbox = document.getElementById('lightbox');
-const immagini = document.querySelectorAll('.gallery img, .murales img');
 const lightboxImg = document.getElementById('lightbox-img');
-const immagini = document.querySelectorAll('.gallery img');
+const lightboxTitolo = document.getElementById('lightbox-titolo');
+const lightboxTesto = document.getElementById('lightbox-testo');
+const immagini = document.querySelectorAll('.gallery img, .murales img');
 let indiceCorrente = 0;
 
-// Mostra l'immagine che si trova in una certa posizione
+// Mostra l'immagine in una certa posizione, con titolo e testo
 function mostra(indice) {
-    // Se supero la fine ricomincio dall'inizio, e viceversa
     indiceCorrente = (indice + immagini.length) % immagini.length;
     const img = immagini[indiceCorrente];
+
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
+
+    const titolo = img.dataset.titolo || img.alt;
+    const testo = img.dataset.testo || '';
+
+    lightboxTitolo.textContent = titolo;
+    lightboxTesto.textContent = testo;
+    lightboxTitolo.hidden = !titolo;
+    lightboxTesto.hidden = !testo;
 }
 
 function apri(indice) {
@@ -22,14 +31,14 @@ function chiudi() {
     lightbox.classList.remove('aperta');
 }
 
-// Clic su una miniatura: apro la lightbox su quell'immagine
+// Clic su una miniatura
 immagini.forEach(function (img, indice) {
     img.addEventListener('click', function () {
         apri(indice);
     });
 });
 
-// Frecce: stopPropagation evita che il clic chiuda la lightbox
+// Frecce
 document.getElementById('prev').addEventListener('click', function (e) {
     e.stopPropagation();
     mostra(indiceCorrente - 1);
@@ -70,3 +79,67 @@ lightbox.addEventListener('pointerup', function (e) {
         mostra(indiceCorrente - 1);
     }
 });
+
+// Murales: mostro poche righe e poi "Mostra altre"
+const murales = document.querySelector('.murales');
+const boxMurales = document.getElementById('murales-box');
+const btnAltre = document.getElementById('mostra-altre');
+
+if (murales && boxMurales && btnAltre) {
+    const RIGHE_DESKTOP = 4;
+    const RIGHE_TELEFONO = 6;
+    let aperto = false;
+
+    // Calcola l'altezza da mostrare, tagliando solo tra una riga e l'altra
+    function calcolaAltezza() {
+        const stile = getComputedStyle(murales);
+        const gap = parseFloat(stile.rowGap);
+        const colonne = stile.gridTemplateColumns.split(' ').length;
+        const hRiga = (murales.clientWidth - (colonne - 1) * gap) / colonne;
+        const base = murales.getBoundingClientRect().top;
+        const celle = Array.from(murales.children);
+
+        const telefono = window.matchMedia('(max-width: 600px)').matches;
+        let righe = telefono ? RIGHE_TELEFONO : RIGHE_DESKTOP;
+
+        // Se una immagine verrebbe tagliata a metà, mostro una riga in meno
+        while (righe > 1) {
+            const y = righe * hRiga + (righe - 1) * gap;
+            const tagliata = celle.some(function (el) {
+                const r = el.getBoundingClientRect();
+                return r.top - base < y - 1 && r.bottom - base > y + 1;
+            });
+            if (!tagliata) break;
+            righe--;
+        }
+
+        return righe * hRiga + (righe - 1) * gap;
+    }
+
+    function aggiorna() {
+        if (aperto) {
+            murales.style.maxHeight = 'none';
+            return;
+        }
+        const altezza = calcolaAltezza();
+        murales.style.maxHeight = altezza + 'px';
+        const cisonoAltre = murales.scrollHeight > altezza + 1;
+        btnAltre.hidden = !cisonoAltre;
+        boxMurales.classList.toggle('chiuso', cisonoAltre);
+    }
+
+    btnAltre.addEventListener('click', function () {
+        aperto = !aperto;
+        btnAltre.textContent = aperto ? 'Mostra meno ↑' : 'Mostra altre ↓';
+        btnAltre.setAttribute('aria-expanded', aperto);
+        boxMurales.classList.toggle('chiuso', !aperto);
+        aggiorna();
+        if (!aperto) {
+            boxMurales.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+
+    window.addEventListener('load', aggiorna);
+    window.addEventListener('resize', aggiorna);
+    aggiorna();
+}
