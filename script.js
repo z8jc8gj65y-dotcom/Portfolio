@@ -1,4 +1,5 @@
 const lightbox = document.getElementById('lightbox');
+const immagini = document.querySelectorAll('.gallery img, .murales img');
 const lightboxImg = document.getElementById('lightbox-img');
 const immagini = document.querySelectorAll('.gallery img');
 let indiceCorrente = 0;

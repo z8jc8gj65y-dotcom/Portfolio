@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gallery | Michael Mikg</title>
+    <!-- Copia qui la stessa riga dei font che hai in index.html -->
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Gallery</h1>
+        <p>Tutte le mie illustrazioni</p>
+        <nav>
+            <a href="index.html">← Home</a>
+            <a href="index.html#progetti">Progetti</a>
+            <a href="index.html#contatti">Contatti</a>
+        </nav>
+    </header>
+
+    <div class="murales">
+        <!-- Righe 1-2 -->
+        <img class="grande" src="images/gallery/01.png" alt="Descrizione 1" loading="lazy">
+        <img class="vert" src="images/gallery/02.jpeg" alt="Descrizione 2" loading="lazy">
+        <img src="images/gallery/03.JPEG" alt="Descrizione 3" loading="lazy">
+        <img src="images/gallery/04.jpeg" alt="Descrizione 4" loading="lazy">
+
+        <!-- Righe 3-4 -->
+        <img class="vert" src="images/gallery/05.JPEG" alt="Descrizione 5" loading="lazy">
+        <img class="grande" src="images/gallery/06.PNG" alt="Descrizione 6" loading="lazy">
+        <img class="vert" src="images/gallery/07.JPEG" alt="Descrizione 7" loading="lazy">
+
+        <!-- Riga 5 -->
+        <img class="oriz" src="images/gallery/08.png" alt="Descrizione 8" loading="lazy">
+        <img src="images/gallery/09.jpeg" alt="Descrizione 9" loading="lazy">
+        <img src="images/gallery/10.jpeg" alt="Descrizione 10" loading="lazy">
+
+        <!-- Riga 6 -->
+        <img src="images/gallery/11.jpg" alt="Descrizione 11" loading="lazy">
+        <img src="images/gallery/12.jpg" alt="Descrizione 12" loading="lazy">
+        <img class="oriz" src="images/gallery/13.jpg" alt="Descrizione 13" loading="lazy">
+
+        <!-- Riga 7 -->
+        <img class="oriz" src="images/gallery/14.jpg" alt="Descrizione 14" loading="lazy">
+        <img src="images/gallery/15.jpg" alt="Descrizione 15" loading="lazy">
+        <img src="images/gallery/16.jpg" alt="Descrizione 16" loading="lazy">
+    </div>
+
+    <footer>
+        <p>© 2026 Michael Mikg</p>
+    </footer>
+
+    <div class="lightbox" id="lightbox">
+        <button class="freccia sinistra" id="prev" aria-label="Immagine precedente">&#10094;</button>
+        <img id="lightbox-img" src="" alt="">
+        <button class="freccia destra" id="next" aria-label="Immagine successiva">&#10095;</button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
