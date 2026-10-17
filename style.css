@@ -109,6 +109,101 @@ footer::before {
 }
 
 /* ==========================
+   EFFETTI MANGA
+   ========================== */
+
+/* L'immagine "trema" per un attimo quando ci passi sopra */
+@keyframes urto {
+
+    0%,
+    100% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 1px) rotate(-0.4deg);
+    }
+
+    40% {
+        transform: translate(2px, -1px) rotate(0.4deg);
+    }
+
+    60% {
+        transform: translate(-1px, -1px);
+    }
+
+    80% {
+        transform: translate(1px, 1px);
+    }
+}
+
+@media (hover: hover) {
+
+    .gallery img:hover {
+        animation: urto 0.3s;
+        filter: contrast(1.1);
+    }
+}
+
+/* L'onomatopea */
+.onomatopea {
+    position: fixed;
+    z-index: 50;
+    pointer-events: none;
+    font-family: 'Reggae One', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: white;
+    text-shadow:
+        -2px -2px 0 var(--testo),
+        2px -2px 0 var(--testo),
+        -2px 2px 0 var(--testo),
+        2px 2px 0 var(--testo),
+        4px 4px 0 var(--testo);
+    opacity: 0;
+}
+
+/* Linee radiali dietro la scritta */
+.onomatopea::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -1.5rem -2rem;
+    background: repeating-conic-gradient(var(--testo) 0 4deg, transparent 4deg 12deg);
+    -webkit-mask-image: radial-gradient(closest-side, transparent 35%, #000 55%, transparent 100%);
+    mask-image: radial-gradient(closest-side, transparent 35%, #000 55%, transparent 100%);
+}
+
+.onomatopea.visibile {
+    animation: boom 0.35s cubic-bezier(0.2, 1.6, 0.4, 1) forwards;
+}
+
+@keyframes boom {
+    from {
+        opacity: 0;
+        transform: rotate(var(--rot, -6deg)) scale(0.4);
+    }
+
+    to {
+        opacity: 1;
+        transform: rotate(var(--rot, -6deg)) scale(1);
+    }
+}
+
+/* Chi preferisce meno movimento non vede le animazioni */
+@media (prefers-reduced-motion: reduce) {
+
+    .gallery img:hover {
+        animation: none;
+    }
+
+    .onomatopea.visibile {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+/* ==========================
    GALLERIA ILLUSTRAZIONI
    ========================== */
 
@@ -293,6 +388,39 @@ article {
     margin: 0.75rem 0 0;
     font-size: 0.85rem;
     color: #666;
+}
+
+.scopri {
+    display: block;
+    text-align: left;
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-top: 0.75rem;
+}
+
+.scopri:hover {
+    text-decoration: underline;
+}
+
+.griglia article {
+    display: flex;
+    flex-direction: column;
+}
+
+.griglia article .scopri {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    align-self: flex-end;
+    /* a destra */
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: inherit;
+    text-decoration: none;
+}
+
+.griglia article .scopri:hover {
+    text-decoration: underline;
 }
 
 /* ==========================

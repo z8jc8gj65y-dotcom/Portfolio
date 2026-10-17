@@ -143,3 +143,49 @@ if (murales && boxMurales && btnAltre) {
     window.addEventListener('resize', aggiorna);
     aggiorna();
 }
+// Effetti manga: onomatopea quando passo il mouse su un'illustrazione
+(function () {
+    // Solo dove esiste il mouse (sul telefono l'hover resterebbe "incollato")
+    if (!window.matchMedia('(hover: hover)').matches) return;
+
+    const suoni = ['ZUUM!', 'DON!', 'BAM!', 'FUUU!', 'ゴゴゴ', 'ドン!', 'バン!'];
+    const bersagli = document.querySelectorAll('.gallery img, .griglia article');
+
+    const suono = document.createElement('span');
+    suono.className = 'onomatopea';
+    suono.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(suono);
+
+    let ultimo = -1;
+
+    function nascondi() {
+        suono.classList.remove('visibile');
+    }
+
+    bersagli.forEach(function (el) {
+        el.addEventListener('mouseenter', function () {
+            // Scelgo un suono diverso dall'ultimo
+            let i;
+            do {
+                i = Math.floor(Math.random() * suoni.length);
+            } while (i === ultimo);
+            ultimo = i;
+
+            // Lo metto nell'angolo in alto a sinistra dell'elemento
+            const r = el.getBoundingClientRect();
+            suono.textContent = suoni[i];
+            suono.style.left = (r.right - 80) + 'px';
+            suono.style.top = (r.top + 14) + 'px';
+            suono.style.setProperty('--rot', (Math.random() * 16 - 8) + 'deg');
+
+            // Riavvio l'animazione
+            suono.classList.remove('visibile');
+            void suono.offsetWidth;
+            suono.classList.add('visibile');
+        });
+
+        el.addEventListener('mouseleave', nascondi);
+    });
+
+    window.addEventListener('scroll', nascondi, { passive: true });
+})();
